@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ứng dụng quản lý sản phẩm trong Hàm</title>
+</head>
+<body>
+<input id="newProduct"><button onclick="addNewP()">Add</button>
+<table border="1px">
+    <tr>
+        <td>Product Name</td>
+        <td>Action</td>
+    </tr>
+    <tbody id="sp">
+    <tr>
+        <td>Sony Xperia</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<button onclick="showAll()">List Product</button>
+<script>
+        let sp = ["Sony Xperia", "Samsung Galaxy", "Nokia 6", "Xiaomi Redmi Note 4", "Apple iPhone 6S", "Xiaomi Mi 5S Plus", "Apple iPhone 8 Plus", "Fujitssu F-04E", "Oppo A71" ];
+        function showAll()
+        {
+            let content = "";
+            for (let i = 0; i < sp.length; i++) {
+                content+="    <tr>" +
+                    "        <td>"+sp[i]+"</td>" +
+                    "        <td><button onclick='deleteByIndex("+i+")'>Edit</button>" +
+                    "<button onclick='updateById("+i+")'>Delete</button></td>" +
+                    "    </tr>"
+            }
+            document.getElementById("sp").innerHTML = content;
+        }
+        function addNewP(){
+            //lay du lieu tu o input
+            let newP = document.getElementById("newProduct").value;
+            // them moi vao mang
+            sp.push(newP);
+            // in lại mang
+            showAll();
+        }
+        function deleteByIndex(index){
+            sp.splice(index, 1);
+            showAll();
+        }
+        function updateById(index){
+            let newP = prompt("Moi ban nhap thong tin moi", sp[index]);
+            sp[index] = newP;
+            showAll();
+        }
+</script>
+</body>
+</html>
